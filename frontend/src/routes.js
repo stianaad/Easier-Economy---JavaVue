@@ -9,7 +9,7 @@ const router = new Router ({
     {
       path: "/",
       name: "Home",
-      component: () => import ("./components/ListCoursesComponent")
+      component: () => import ("./components/Home")
     },
     {
       path: "/courses",
