@@ -6,10 +6,35 @@ Vue.use(Router)
 const router = new Router ({
   mode: 'history',
   routes: [
-    {
+    {path: "/", redirect: {name: "Recipe"}},
+    /*{
       path: "/",
       name: "Home",
-      component: () => import ("./components/Home")
+      component: () => import ("./components/Home"),
+    },*/
+    {
+      path: "/recipe",
+      name: "Recipe",
+      component: () => import ("./components/Recipe"),
+      meta: {
+        label: "Recipe"
+      }
+    },
+    {
+      path: "/list",
+      name: "ShoppingList",
+      component: () => import ("./components/ShoppingList"),
+      meta: {
+        label: "ShoppingList"
+      }
+    },
+    {
+      path: "/economy",
+      name: "Economy",
+      component: () => import ("./components/Economy"),
+      meta: {
+        label: "Economy"
+      }
     },
     {
       path: "/courses",
@@ -19,7 +44,7 @@ const router = new Router ({
     {
       path: "/courses/:id",
       name: "Course Details",
-      component: () => import("./components/CourseComponent")
+      component: () => import("./components/HelloWorld")
     }
   ]
 })
