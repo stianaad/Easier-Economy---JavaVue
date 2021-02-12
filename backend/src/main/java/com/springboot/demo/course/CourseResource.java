@@ -13,7 +13,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class CourseResource{
 	@Autowired
 	private CoursesHardcodedService courseManagementService;
-	
+
+	@GetMapping("/instructors")
+	public Course getCourse(){return new Course(1, "hei", "df");}
+
 	@GetMapping("/instructors/{username}/courses")
 	public List<Course> getAllCourses(@PathVariable String username){
 		return courseManagementService.findAll();
@@ -47,6 +50,5 @@ public class CourseResource{
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdCourse.getId()).toUri();
 		return ResponseEntity.created(uri).build();
-		
 	}
 }

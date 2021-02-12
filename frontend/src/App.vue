@@ -1,20 +1,50 @@
 <template>
   <v-app>
-    <v-container class="pa-0 ma-0 align-stretch mainLayout">
-      <v-row class="mainLayout full-height align-stretch" dense="true">
-        <v-col md="3" lg="3" class="menu mainLayout">
-          <Menu/>
-        </v-col>
-        <v-col md="9" lg="9">
-          <router-view/>
-        </v-col>
-      </v-row>
-    </v-container>
-    <div >
-      
-    </div>
-    <div >
-      
+    <div class="mainLayout">
+      <Menu v-if="windowHeight>500" class="mainLayout"/>
+      <router-view v-if="windowHeight>500" class="marginAllElements" />
+      <v-card
+      v-if="windowHeight<=500"
+    class="mx-auto overflow-hidden"
+    height="100%"
+    width="100%"
+  >
+    <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      bottom
+      temporary
+    >
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item>
+            <v-list-item-title>Foo</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Bar</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Fizz</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item>
+            <v-list-item-title>Buzz</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+     <router-view class="marginAllElements" />
+  </v-card>
     </div>
   </v-app>
 </template>
@@ -29,24 +59,67 @@ export default {
   components: {
     Menu,
   },
+  data() {
+    return {
+      windowHeight: window.innerWidth,
+      txt: '',
+      drawer: false,
+      group: null
+    }
+  },
+  watch: {
+    windowHeight(newHeight, oldHeight) {
+    this.txt = `it changed to ${newHeight} from ${oldHeight}`;
+    },
+    group() {
+      this.drawer = false
+    }
+  },
 
-  data: () => ({
-    //
-  }),
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+  },
+
+  beforeDestroy() { 
+    window.removeEventListener('resize', this.onResize); 
+  },
+
+  methods: {  
+    onResize() {
+      this.windowHeight = window.innerWidth
+    },
+    showMenu (){
+      if(this.windowHeight < 400){
+        //this.drawer = !this.drawer
+      }
+    }
+  }
 };
 </script>
 
-<style>
-.menu {
-  float: left;
+<style scoped>
+
+html, 
+body {
+  height: 100%;
+  width: 100%;
 }
 
 .mainLayout {
   height: 100% !important;
 }
-
-.row {
-  height: 100%;
-  margin: 10px;
+@media screen and (max-width: 500px) {
+  .marginAllElements {
+    margin-left: 0px;
+  }
 }
+
+@media screen and (min-width: 501px) {
+  .marginAllElements {
+    margin-left: 256px;
+  }
+}
+
 </style>

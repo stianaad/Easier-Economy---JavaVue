@@ -15,7 +15,7 @@ const router = new Router ({
     {
       path: "/recipe",
       name: "Recipe",
-      component: () => import ("./components/Recipe"),
+      component: () => import ("./components/Recipe/Recipe"),
       meta: {
         label: "Recipe"
       }

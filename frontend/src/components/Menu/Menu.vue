@@ -1,10 +1,10 @@
 <template>
   <v-card
-    width="256"
     class="mx-auto"
     height="100%"
+    width="256px"
   >
-    <v-navigation-drawer permanent light class="backgroundGradient">
+    <v-navigation-drawer permanent absolute class="backgroundGradient">
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title textColor">
@@ -48,27 +48,16 @@
         return this.$router.options.routes
       }
     },
-    data () {
-      return {
-        items: [
-          { title: 'Oppskrifter', icon: 'mdi-view-dashboard' },
-          { title: 'Handleliste', icon: 'mdi-image' },
-          { title: 'Økonmi', icon: 'mdi-help-box' },
-          { title: 'Logg inn', icon: 'mdi-help-box' },
-        ],
-        right: null,
-      }
-    },
   }
 </script>
 
-<style>
+<style scoped> 
 .v-card{
   float: left;
 }
 
 .backgroundGradient {
-  background: linear-gradient(120deg, #50A18A 30%, #1D7F9D 90%);
+  background: linear-gradient(220deg, #544a7d 20%, #ffd452 100%);
 }
 
 .textColor {
