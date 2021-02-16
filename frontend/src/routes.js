@@ -45,7 +45,23 @@ const router = new Router ({
       path: "/courses/:id",
       name: "Course Details",
       component: () => import("./components/HelloWorld")
-    }
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: () => import ("./authentication/Login"),
+      meta: {
+        label: "Login"
+      }
+    },
+    {
+      path: "/signup",
+      name: "SignUp",
+      component: () => import ("./authentication/SignUp"),
+      meta: {
+        label: "SignUp"
+      }
+    },
   ]
 })
 

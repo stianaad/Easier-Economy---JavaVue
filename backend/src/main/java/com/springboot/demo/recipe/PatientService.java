@@ -5,7 +5,9 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 //CRUD operations
@@ -15,8 +17,9 @@ public class PatientService {
     public static final String COL_NAME="users";
 
     public String savePatientDetails(Patient patient) throws InterruptedException, ExecutionException {
+        UUID uuid = UUID.randomUUID();
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(patient.getFirst()).set(patient);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(uuid.toString()).set(patient);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
@@ -38,22 +41,17 @@ public class PatientService {
         }
     }
 
-    public Patient getAllPatients() throws InterruptedException, ExecutionException {
+    public List<Patient> getAllPatients() throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> query = dbFirestore.collection("users").get();
         QuerySnapshot querySnapshot = query.get();
         List<QueryDocumentSnapshot> documents = querySnapshot.getDocuments();
+        List<Patient> patients = new ArrayList<>();
         for (QueryDocumentSnapshot document : documents) {
-            System.out.println("User: " + document.getId());
-            System.out.println("First: " + document.getString("first"));
-            if (document.contains("middle")) {
-                System.out.println("Middle: " + document.getString("middle"));
-            }
-            System.out.println("Last: " + document.getString("last"));
-            System.out.println("Born: " + document.getLong("born"));
+            patients.add(document.toObject(Patient.class));
         }
 
-        return new Patient("stian", 1, "bomlo");
+        return patients;
     }
 
     public String updatePatientDetails(Patient person) throws InterruptedException, ExecutionException {

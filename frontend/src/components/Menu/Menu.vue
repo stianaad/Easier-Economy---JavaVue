@@ -57,7 +57,7 @@
 }
 
 .backgroundGradient {
-  background: linear-gradient(220deg, #544a7d 20%, #ffd452 100%);
+  background: linear-gradient(220deg, #0384ac 10%, #50A7C2 50%, #B7F8DB 90%);
 }
 
 .textColor {

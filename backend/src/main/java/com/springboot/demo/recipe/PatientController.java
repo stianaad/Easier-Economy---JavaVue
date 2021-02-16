@@ -19,7 +19,7 @@ public class PatientController {
     }
 
     @GetMapping("/getAllPatients")
-    public Patient getAllPatients() throws InterruptedException, ExecutionException {
+    public List<Patient> getAllPatients() throws InterruptedException, ExecutionException {
         return patientService.getAllPatients();
     }
 

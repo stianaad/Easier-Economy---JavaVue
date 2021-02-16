@@ -1,18 +1,33 @@
 package com.springboot.demo.recipe;
 
-public class Recipe {
+import java.util.UUID;
 
+public class Recipe {
     private String name;
     private String description;
     private int minutes;
     private int price;
     private double rating;
+    private String url;
+    private String category;
 
-    public Recipe(String name, String description, int minutes, int price){
+    public Recipe(){}
+
+    public Recipe(String name, String description, int minutes, int price, String url, String category){
         this.name = name;
         this.description = description;
         this.minutes = minutes;
         this.price = price;
+        this.url = url;
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -45,6 +60,14 @@ public class Recipe {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
 

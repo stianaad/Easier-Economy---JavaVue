@@ -4,8 +4,13 @@
     <FilterMenu />
     <v-container align="center" class="scrollDiv">
       <v-row algin="center" justify="center">
-        <v-col v-for="k in 6" :key="k" sm="6" md="6" algin="center" justify="center">
-          <RecipeCard/>
+        <v-col v-for="recipe in recipes" :key="recipe.name" sm="6" md="6" algin="center" justify="center">
+          <RecipeCard :title="recipe.name"
+                      :rating="recipe.rating"
+                      :description="recipe.description"
+                      :minutes="recipe.minutes"
+                      :price="recipe.price"
+                      :url="recipe.url" />
         </v-col>
       </v-row>
     </v-container>
@@ -15,12 +20,31 @@
 <script>
 import RecipeCard from "./RecipeCard"
 import FilterMenu from './FilterMenu'
+import RecipeDataService from '../../services/RecipeDataService'
+import firebase from 'firebase'
 export default {
   name: "Recipe",
   components: {
     RecipeCard,
-    FilterMenu
+    FilterMenu 
   },
+  data(){
+    return{
+      recipes: []
+    }
+  },
+  methods: {
+    fetchAllRecipes(){
+      RecipeDataService.retriveAllRecipe().then(res => {
+        console.log(res.data)
+        this.recipes = res.data
+        })
+    }
+  },
+  created(){
+    this.fetchAllRecipes()
+    console.log(firebase.auth().currentUser)
+  }
 }
 </script>
 

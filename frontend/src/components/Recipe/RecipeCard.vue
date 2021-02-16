@@ -5,10 +5,10 @@
   >
     <v-img
       height="200"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+      :src="url"
     ></v-img>
 
-    <v-card-title>Kjøttdeig og spaghetti</v-card-title>
+    <v-card-title>{{title}}</v-card-title>
 
     <v-card-text>
       <v-row
@@ -16,7 +16,7 @@
         class="mx-0"
       >
         <v-rating
-          :value="4.5"
+          :value="rating"
           color="amber"
           dense
           half-increments
@@ -28,7 +28,7 @@
           4.5 (413)
         </div>
         <div>
-          Enkel oppskrift for kjøttdeig og spaghetti. Smaker veldig godt
+          {{description}}
         </div>
       </v-row>
     </v-card-text>
@@ -37,11 +37,11 @@
       <v-row align="center" class="mx-0">
         <v-icon>mdi-clock-time-nine-outline</v-icon>
         <div class="grey-darken-3--text ml-4">
-          30 min
+          {{minutes}} min
         </div>
         <v-icon class="ml-10">mdi-currency-usd</v-icon>
         <div class="grey-darken-3--text ml-4">
-          100 kr
+          {{price}} kr
         </div>
       </v-row>
     </v-card-text>
@@ -50,7 +50,14 @@
 
 <script>
   export default {
-
+    props: {
+      title: String,
+      rating: Number,
+      description: String,
+      minutes: Number,
+      price: Number,
+      url: String
+    }
   }
 </script>
 
