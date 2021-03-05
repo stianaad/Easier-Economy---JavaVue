@@ -10,20 +10,22 @@
             @input="update"
             class="mx-auto"
             prepend-inner-icon="mdi-magnify"/>
-    <container class="mx-10 mt-7">
+    <v-container class="mx-10 mt-7">
       <v-row align="center" class="mx-auto">
         <v-col xs="12" sm="6" md="4">
-          <v-select 
-        class="dropdown"
-        :items="items" 
+          <v-select
+        v-model="difficultyValue"
+        class="dropdown mx-auto"
+        :items="difficulty" 
         label="Vanskelighetsgrad"
         solo
         rounded/>
         </v-col>
         <v-col xs="12" sm="6" md="4" class="mx-auto">
           <v-select 
-        class="dropdown"
-        :items="items" 
+        class="dropdown mx-auto"
+        :items="rating"
+        v-model="ratingValue"
         label="Rangering"
         solo
         rounded/>
@@ -40,7 +42,7 @@
         thumb-label="always"/>
         </v-col>
       </v-row>
-    </container>
+    </v-container>
   </div>
 </template>
 
@@ -49,14 +51,25 @@
     name: "FilterMenu",
     data(){
       return {
-         ex1: { label: 'Tid', val: 125, color: 'blue light-1', trackColor: "black"},
+        ex1: { label: 'Tid', val: 125, color: 'blue light-1', trackColor: "black"},
         text: "",
-        items: ['Foo', 'Bar', 'Fizz', 'Buzz']
+        difficultyValue: "",
+        difficulty: ['Alle', 'Lett', 'Middels', 'Vanskelig'],
+        rating: ["Alle",1, 2, 3, 4, 5],
+        ratingValue: 0
         }
     },
     methods: {
       update(){
         console.log(this.text)
+      },
+    },
+    watch: {
+      difficultyValue(){
+        this.$emit('clicked', this.difficultyValue)
+      },
+      ratingValue() {
+        this.$emit('rating', this.ratingValue)
       }
     }
   }

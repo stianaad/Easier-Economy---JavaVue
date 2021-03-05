@@ -1,7 +1,7 @@
 <template>
   <div >
-    <h3 class="headerText">Oppskrifter</h3>
-    <FilterMenu />
+    <h3 class="headerText">Oppskrifte</h3>
+    <FilterMenu @clicked="difficultyFilter" @rating="ratingFilter"/>
     <v-container align="center" class="scrollDiv">
       <v-row algin="center" justify="center">
         <v-col v-for="recipe in recipes" :key="recipe.name" sm="6" md="6" algin="center" justify="center">
@@ -10,7 +10,8 @@
                       :description="recipe.description"
                       :minutes="recipe.minutes"
                       :price="recipe.price"
-                      :url="recipe.url" />
+                      :url="recipe.url"
+                      :difficulty="recipe.difficulty" />
         </v-col>
       </v-row>
     </v-container>
@@ -21,7 +22,6 @@
 import RecipeCard from "./RecipeCard"
 import FilterMenu from './FilterMenu'
 import RecipeDataService from '../../services/RecipeDataService'
-import firebase from 'firebase'
 export default {
   name: "Recipe",
   components: {
@@ -30,20 +30,40 @@ export default {
   },
   data(){
     return{
-      recipes: []
+      recipes: [],
+      allRecipes: [],
+      difficultyValue: 0,
+      ratingValue: 0,
+      
     }
   },
   methods: {
     fetchAllRecipes(){
       RecipeDataService.retriveAllRecipe().then(res => {
-        console.log(res.data)
         this.recipes = res.data
+        this.allRecipes = res.data
         })
+    },
+    difficultyFilter(value) {
+        const jsonTable = {"Alle": 0, "Lett": 1, "Middels": 2, "Vanskelig": 3}
+        this.difficultyValue = jsonTable[value]
+        this.filterFunction()
+    },
+    ratingFilter(value) {
+      if (value == "Alle") {
+        this.ratingValue = 0
+      } else {
+        this.ratingValue = value
+      }
+      this.filterFunction()
+    },
+    filterFunction() {
+      this.recipes = this.allRecipes.filter( e => e.difficulty >= this.difficultyValue).filter(e => e.rating >= this.ratingValue)
     }
   },
   created(){
     this.fetchAllRecipes()
-    console.log(firebase.auth().currentUser)
+    //console.log(firebase.auth().currentUser)
   }
 }
 </script>

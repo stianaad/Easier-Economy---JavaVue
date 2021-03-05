@@ -34,14 +34,18 @@
     </v-card-text>
     <v-divider class="mx-4"></v-divider>
     <v-card-text>
-      <v-row align="center" class="mx-0">
+      <v-row >
+        <div class="grey-darken-3--text mx-auto">
         <v-icon>mdi-clock-time-nine-outline</v-icon>
-        <div class="grey-darken-3--text ml-4">
           {{minutes}} min
         </div>
-        <v-icon class="ml-10">mdi-currency-usd</v-icon>
-        <div class="grey-darken-3--text ml-4">
+        <div class="grey-darken-3--text mx-auto">
+        <v-icon >mdi-currency-usd</v-icon>
           {{price}} kr
+        </div>
+        <div class="grey-darken-3--text mx-auto">
+          <v-icon >mdi-dumbbell</v-icon>
+          {{jsonTable[difficulty-1]}}
         </div>
       </v-row>
     </v-card-text>
@@ -56,7 +60,13 @@
       description: String,
       minutes: Number,
       price: Number,
-      url: String
+      url: String,
+      difficulty: Number
+    },
+    data() {
+      return {
+        jsonTable: ["Lett", "Middels", "Vanskelig"]
+      }
     }
   }
 </script>

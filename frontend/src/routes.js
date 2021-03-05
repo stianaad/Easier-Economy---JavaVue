@@ -6,7 +6,7 @@ Vue.use(Router)
 const router = new Router ({
   mode: 'history',
   routes: [
-    {path: "/", redirect: {name: "Recipe"}},
+    {path: "/", redirect: {name: "Oppskrifter"}},
     /*{
       path: "/",
       name: "Home",
@@ -14,27 +14,18 @@ const router = new Router ({
     },*/
     {
       path: "/recipe",
-      name: "Recipe",
+      name: "Oppskrifter",
       component: () => import ("./components/Recipe/Recipe"),
-      meta: {
-        label: "Recipe"
-      }
     },
     {
       path: "/list",
-      name: "ShoppingList",
+      name: "Handleliste",
       component: () => import ("./components/ShoppingList"),
-      meta: {
-        label: "ShoppingList"
-      }
     },
     {
       path: "/economy",
-      name: "Economy",
+      name: "Økonomi",
       component: () => import ("./components/Economy"),
-      meta: {
-        label: "Economy"
-      }
     },
     {
       path: "/courses",
@@ -48,18 +39,18 @@ const router = new Router ({
     },
     {
       path: "/login",
-      name: "Login",
+      //name: "Logg inn",
       component: () => import ("./authentication/Login"),
       meta: {
-        label: "Login"
+        //label: "Login"
       }
     },
     {
       path: "/signup",
-      name: "SignUp",
+      //name: "SignUp",
       component: () => import ("./authentication/SignUp"),
       meta: {
-        label: "SignUp"
+        //label: "SignUp"
       }
     },
   ]

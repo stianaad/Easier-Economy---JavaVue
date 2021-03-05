@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from "./routes"
 import vuetify from './plugins/vuetify';
 import firebase from 'firebase';
+import Vuex from 'vuex'
 
 Vue.config.productionTip = false
 
@@ -19,8 +20,33 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+    login: "Logg inn",
+    path: "login",
+    clickedLogin: false,
+    clickedSignUp: false
+  },
+  mutations: {
+    setLogin (state, login) {
+      state.login = login
+    },
+    setPath(state, path){
+      state.path = path;
+    },
+    setClickedLogin(state, clickedLogin) {
+      state.clickedLogin = clickedLogin
+    },
+    setClickedSignUp(state, clickedSignUp) {
+      state.clickedSignUp = clickedSignUp
+    }
+  }
+})
 
 new Vue({
+  store,
   router,
   vuetify,
   render: h => h(App)
