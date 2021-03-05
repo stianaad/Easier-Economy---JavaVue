@@ -10,6 +10,14 @@ class RecipeDataService {
   retriveOneRecipe(id){
     return axios.get(`${COURSE_API_URL}/recipe/${id}`)
   }
+
+  sendImage(data){
+    return axios.post(`${COURSE_API_URL}/profile/pic`, data)
+  }
+
+  getImage(name){
+    //return 
+  }
 }
 
 export default new RecipeDataService()

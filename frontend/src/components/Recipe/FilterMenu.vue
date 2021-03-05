@@ -1,15 +1,15 @@
 <template>
   <div>
     <v-text-field
-            label="Søk"
-            placeholder="Spaghetti"
-            rounded
-            outlined
-            dense
-            v-model="text"
-            @input="update"
-            class="mx-auto"
-            prepend-inner-icon="mdi-magnify"/>
+      label="Søk"
+      placeholder="Spaghetti"
+      rounded
+      outlined
+      dense
+      v-model="text"
+      @input="update"
+      class="mx-auto"
+      prepend-inner-icon="mdi-magnify"/>
     <v-container class="mx-10 mt-7">
       <v-row align="center" class="mx-auto">
         <v-col xs="12" sm="6" md="4">

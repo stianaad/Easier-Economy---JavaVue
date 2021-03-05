@@ -10,16 +10,26 @@ public class Recipe {
     private double rating;
     private String url;
     private String category;
+    private int difficulty;
 
     public Recipe(){}
 
-    public Recipe(String name, String description, int minutes, int price, String url, String category){
+    public Recipe(String name, String description, int minutes, int price, String url, String category, int difficulty){
         this.name = name;
         this.description = description;
         this.minutes = minutes;
         this.price = price;
         this.url = url;
         this.category = category;
+        this.difficulty = difficulty;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getCategory() {

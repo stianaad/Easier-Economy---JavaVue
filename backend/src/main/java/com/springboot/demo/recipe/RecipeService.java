@@ -1,10 +1,21 @@
 package com.springboot.demo.recipe;
 
 import com.google.api.core.ApiFuture;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import com.google.firebase.cloud.FirestoreClient;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

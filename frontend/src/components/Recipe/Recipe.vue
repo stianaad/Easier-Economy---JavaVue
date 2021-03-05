@@ -1,6 +1,21 @@
 <template>
   <div >
-    <h3 class="headerText">Oppskrifte</h3>
+    <v-container>
+      <v-row>
+        <v-col>
+          <h3 class="headerText">Oppskrifter</h3>
+        </v-col>
+        <v-col sm="2">
+          <v-btn
+            class="mx-2 mt-5" fab dark color="green darken-2" @click.stop="openDialog">
+            <v-icon dark>
+              mdi-plus
+            </v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>  
+    </v-container>
+    <AddRecipe :showDialog="showDialog" />
     <FilterMenu @clicked="difficultyFilter" @rating="ratingFilter"/>
     <v-container align="center" class="scrollDiv">
       <v-row algin="center" justify="center">
@@ -22,11 +37,13 @@
 import RecipeCard from "./RecipeCard"
 import FilterMenu from './FilterMenu'
 import RecipeDataService from '../../services/RecipeDataService'
+import AddRecipe from './AddRecipe'
 export default {
   name: "Recipe",
   components: {
     RecipeCard,
-    FilterMenu 
+    FilterMenu,
+    AddRecipe
   },
   data(){
     return{
@@ -34,10 +51,14 @@ export default {
       allRecipes: [],
       difficultyValue: 0,
       ratingValue: 0,
-      
+      formData: null,
+      showDialog: false
     }
   },
   methods: {
+    openDialog(){
+      this.showDialog = true
+    },
     fetchAllRecipes(){
       RecipeDataService.retriveAllRecipe().then(res => {
         this.recipes = res.data
@@ -59,6 +80,11 @@ export default {
     },
     filterFunction() {
       this.recipes = this.allRecipes.filter( e => e.difficulty >= this.difficultyValue).filter(e => e.rating >= this.ratingValue)
+    },
+    sendImage() {
+      let file = this.$refs.uploadImage.files[0];
+      this.formData = new FormData();
+      this.formData.append("file", file);
     }
   },
   created(){
