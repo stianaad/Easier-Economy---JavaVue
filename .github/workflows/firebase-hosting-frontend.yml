@@ -13,12 +13,10 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - name: change directiory
-        run: cd frontend
       - name: Install Dependencies
-        run: yarn install
+        run: cd frontend && yarn install
       - name: Build
-        run: yarn build
+        run: cd frontend && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
