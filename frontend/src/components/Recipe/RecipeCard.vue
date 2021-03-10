@@ -27,10 +27,10 @@
         <div class="grey--text ml-4">
           4.5 (413)
         </div>
-        <div>
+      </v-row>
+      <div class="mt-3">
           {{description}}
         </div>
-      </v-row>
     </v-card-text>
     <v-divider class="mx-4"></v-divider>
     <v-card-text>
@@ -38,10 +38,6 @@
         <div class="grey-darken-3--text mx-auto">
         <v-icon>mdi-clock-time-nine-outline</v-icon>
           {{minutes}} min
-        </div>
-        <div class="grey-darken-3--text mx-auto">
-        <v-icon >mdi-currency-usd</v-icon>
-          {{price}} kr
         </div>
         <div class="grey-darken-3--text mx-auto">
           <v-icon >mdi-dumbbell</v-icon>

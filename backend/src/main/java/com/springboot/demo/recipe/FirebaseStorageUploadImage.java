@@ -70,7 +70,7 @@ public class FirebaseStorageUploadImage {
             return link;                     // Your customized response
         } catch (Exception e) {
             e.printStackTrace();
-            return "500" + e+ "Unsuccessfully Uploaded!";
+            return null;
         }
     }
 

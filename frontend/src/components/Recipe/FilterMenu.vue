@@ -10,8 +10,8 @@
       @input="update"
       class="mx-auto"
       prepend-inner-icon="mdi-magnify"/>
-    <v-container class="mx-10 mt-7">
-      <v-row align="center" class="mx-auto">
+    <v-container class="mx-20 mt-7">
+      <v-row align="center" >
         <v-col xs="12" sm="6" md="4">
           <v-select
         v-model="difficultyValue"

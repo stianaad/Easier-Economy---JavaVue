@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <div class="mainLayout">
-      <Menu v-if="windowHeight>500" class="mainLayout"/>
-      <router-view v-if="windowHeight>500" class="marginAllElements" />
+      <Menu v-if="windowHeight>700" class="mainLayout"/>
+      <router-view v-if="windowHeight>700" class="marginAllElements" />
       <v-card
-      v-if="windowHeight<=500"
+      v-if="windowHeight<=700"
     class="mx-auto overflow-hidden"
     height="100%"
     width="100%"
@@ -110,13 +110,13 @@ body {
 .mainLayout {
   height: 100% !important;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .marginAllElements {
     margin-left: 0px;
   }
 }
 
-@media screen and (min-width: 501px) {
+@media screen and (min-width: 701px) {
   .marginAllElements {
     margin-left: 256px;
   }

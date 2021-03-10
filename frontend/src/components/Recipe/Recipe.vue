@@ -2,12 +2,12 @@
   <div >
     <v-container>
       <v-row>
-        <v-col>
+        <v-col xs="9" sm="10">
           <h3 class="headerText">Oppskrifter</h3>
         </v-col>
-        <v-col sm="2">
+        <v-col xs="3" sm="2">
           <v-btn
-            class="mx-2 mt-5" fab dark color="green darken-2" @click.stop="openDialog">
+            class="mx-2 mt-5" fab dark color="#0384ac" @click.stop="openDialog">
             <v-icon dark>
               mdi-plus
             </v-icon>
@@ -16,7 +16,7 @@
       </v-row>  
     </v-container>
     <AddRecipe :showDialog="showDialog" />
-    <FilterMenu @clicked="difficultyFilter" @rating="ratingFilter"/>
+    <FilterMenu class="mt-3" @clicked="difficultyFilter" @rating="ratingFilter"/>
     <v-container align="center" class="scrollDiv">
       <v-row algin="center" justify="center">
         <v-col v-for="recipe in recipes" :key="recipe.name" sm="6" md="6" algin="center" justify="center">

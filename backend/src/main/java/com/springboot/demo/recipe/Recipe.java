@@ -1,27 +1,39 @@
 package com.springboot.demo.recipe;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Recipe {
     private String name;
     private String description;
     private int minutes;
-    private int price;
     private double rating;
     private String url;
     private String category;
     private int difficulty;
+    private List<Ingredient> ingredients;
+    private int portion;
 
     public Recipe(){}
 
-    public Recipe(String name, String description, int minutes, int price, String url, String category, int difficulty){
+    public Recipe(String name, String description, int minutes, String url, String category, int difficulty, List<Ingredient> ingredients, int portion){
         this.name = name;
         this.description = description;
         this.minutes = minutes;
-        this.price = price;
         this.url = url;
         this.category = category;
         this.difficulty = difficulty;
+        this.ingredients = ingredients;
+        this.portion = portion;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public int getDifficulty() {
@@ -57,12 +69,6 @@ public class Recipe {
     }
 
     public void setMinutes(int minutes){this.minutes = minutes;}
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price){this.price = price;}
 
     public String getName() {
         return name;

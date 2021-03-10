@@ -15,8 +15,8 @@ class RecipeDataService {
     return axios.post(`${COURSE_API_URL}/profile/pic`, data)
   }
 
-  getImage(name){
-    //return 
+  createRecipe(recipe) {
+    return axios.post(`${COURSE_API_URL}/recipe`, recipe)
   }
 }
 
