@@ -3,8 +3,9 @@
 
 name: Deploy to Firebase Hosting on merge
 'on':
-  changes:
-    - frontend
+  push:
+    branches:
+       - master
 jobs:
   build:
     name: Build
@@ -26,3 +27,6 @@ jobs:
           projectId: easiereconomy
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+    only:
+      changes:
+        - frontend
